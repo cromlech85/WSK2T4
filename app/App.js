@@ -8,7 +8,7 @@ class App extends Component {
         return (
             <Router history={hashHistory}>
                 <Route path='/' component={Container}>
-                    <IndexRoute component={Form} />
+                    <IndexRoute component={List} />
                     <Route path='/form' component={Form} />
                     <Route path='/admin' component={Admin} />
                     <Route path='*' component={NotFound} />
@@ -18,7 +18,6 @@ class App extends Component {
     }
 }
 const Home = () => <h1>Tähän lista ilmoittautuneista</h1>
-//const Form = () => <Form />
 const Admin = () => <h1>Admin kirjautuminen</h1>
 const NotFound = () => <h1>404 Page not found</h1>
 const Nav = () => (

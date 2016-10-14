@@ -1,4 +1,8 @@
 import React from 'react';
+import NameContainer from './NameContainer';
+import EmailContainer from './EmailContainer';
+import FoodContainer from './FoodContainer';
+import SaunaContainer from './SaunaContainer'
 
 var FormContainer = React.createClass({
     getInitialState: function () {
@@ -6,25 +10,27 @@ var FormContainer = React.createClass({
                 id: 0,
                 name: '',
                 email: '',
-                food: '',
-                sauna: '',
+                food: 'Kala',
+                sauna: 'ei',
                 data: []
             };
     },
     componentWillMount: function () {
         this.setState({id: 0});  
     },
-    handleNameChange: function (e) {
-        this.setState({name: e.target.value});
+    addName: function (name) {
+        this.setState({name: name});
     },
-    handleEmailChange: function (e) {
-        this.setState({email: e.target.value});
+    addEmail: function (email) {
+        this.setState({email: email});
     },
-    handleFoodChange: function (e) {
-        this.setState({email: e.target.value});
+    addFood: function (food) {
+        this.setState({food: food});
     },
-    handleSaunaChange: function (e) {
-        
+    addSaunaParticipation: function (reply) {
+        this.setState({
+            sauna: reply
+        });
     },
     onSubmit: function (newUser) {
         var allUsers = this.state.data;
@@ -46,21 +52,13 @@ var FormContainer = React.createClass({
         return (
             <form onSubmit={this.handleSubmit}>
                 <div>
-                    <label>Nimi:</label>
-                    <input type="text" id="name" placeholder="nimi" onChange={this.handleNameChange} />
+                    <NameContainer name={this.state.name} onChange={this.addName} />
 
-                    <label>Email:</label>
-                    <input type="email" id="email" placeholder="email" onChange={this.handleEmailChange} />
+                    <EmailContainer email={this.state.email} onChange={this.addEmail} />
 
-                    <label>Ruokavalinta:</label>
-                    <select id="food" onChange={this.handleFoodChange}>
-                        <option value="Kala">Kala</option>
-                        <option value="Liha">Liha</option>
-                        <option value="Kasvis">Kasvis</option>
-                    </select>
-                    <div>
-                        <label><input type="checkbox" onChange={this.handleSaunaChange} /> Osallistun saunailtaan</label>
-                    </div>
+                    <FoodContainer food={this.state.food} onChange={this.addFood} />
+                    
+                    <SaunaContainer sauna={this.state.sauna} onChange={this.addSaunaParticipation} />
                 </div>
                 <button type="submit">Lähetä</button>
             </form>
